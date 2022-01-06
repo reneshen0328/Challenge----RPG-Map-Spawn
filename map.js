@@ -25,18 +25,27 @@ class Map {
 const testMap = new Map()
 testMap.generateMap();
 
+//TESTING if the code works before implementing into the actual code
 function exampleMap(){
     let testMap = [];
+    let randomNumber = Math.floor(Math.random()*4);
+    const randomPlayer = "p";
+    const randomMonster = "M";
+    
+
     for (let i = 0; i < 4; i++){
         testMap[i]=new Array();
         for(let j = 0; j < 4; j++){
-            testMap[i][j];
+            testMap[i][j]=0;
         }
       };
-      console.log(testMap)
+
+      const randomMapRow = testMap[randomNumber];
+
+      console.log("TESTING THE MAP:",testMap)
+      console.log("TESTING THE random row:",randomMapRow)
 }
 
-const testingMap = exampleMap();
-// console.log(testingMap)
+exampleMap();
 
 module.exports = Map
