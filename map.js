@@ -6,8 +6,6 @@ class Map {
     constructor(){
         this.map = [];
         this.collision = false;
-        // this.randomPlayer = "p";
-        // this.randomMonster = "M";
     }
 
     // Generating a 4X4 array
