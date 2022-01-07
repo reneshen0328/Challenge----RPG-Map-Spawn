@@ -20,49 +20,44 @@ class Map {
 
         // METHOD 2:
         this.map = Array(4).fill().map(()=>Array(4).fill(0))
-        console.log(this.map)
+        // console.log(this.map)
     }
 
     //Generating 1 player and 6 monsters onto the map created
     spawnPlayerMonster(player,monster){
         let monsterCount = 0;
         for(let i=0;i<4;i++){
-            for(let j=0;j<4;j++){
-                if(this.map[i][j] == monster){
-                monsterCount++;
-                };
-            };
+            this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
+            monsterCount++;
             if(monsterCount>=6){
-                return this.map;
+                console.log("Stop adding monster!");
             }else{
                 this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
+                monsterCount++;
             };
-            this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
-    };
+        };
 
         const randomMapRow = this.map[Math.floor(Math.random()*4)];
         if(!this.map.includes(player)){
                 randomMapRow[Math.floor(Math.random()*4)]=player;
-            };
+        };
 
         console.log("The map:",this.map);
         return this.map;
     };
 
     //Updating the collision status to true or false based on player and moster's position
-    updateCollision(map){
+    updateCollision(map,player,monster){
         for(let i=0;i<4;i++){
             for(let j=0;j<4;j++){
-                if(map[i][j] == this.randomMonster == this.randomPlayer){
+                if((map[i][j] == player) && (map[i][j] == monster)){
                 this.collision=true;
                 };
+                console.log("i:",i,"j:",j)
             };
         };
         console.log("Collision status:",this.collision)
     }
 }
-
-const testMap = new Map();
-testMap.generateMap();
 
 module.exports = Map

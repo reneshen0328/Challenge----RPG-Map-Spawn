@@ -6,8 +6,8 @@ const Map = require("./map")
 
 //Create instances
 const testMap = new Map();
-const testPlayer = new Player(["P"],100,40);
-const testMonster= new Monster(["M"],50,20);
+const testPlayer = new Player("P",100,40);
+const testMonster= new Monster("M",50,20);
 
 //Create battle function 
 function battle(){
@@ -26,7 +26,7 @@ function battle(){
 //Generate a map with a player and 6 monsters
 testMap.generateMap();
 const wholeMap = testMap.spawnPlayerMonster(testPlayer.name,testMonster.name);
-const collisionStatus = testMap.updateCollision(wholeMap);
+const collisionStatus = testMap.updateCollision(wholeMap,testPlayer.name,testMonster.name);
 
 //Battle if the player meets a moster
 if(collisionStatus){
