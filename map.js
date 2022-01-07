@@ -8,7 +8,7 @@ class Map {
         this.collision = false;
     }
 
-    // Generating a 4X4 array
+    // Generating a 4X4 array Map
     generateMap(){
         // METHOD 1:
         // for (let i = 0; i < 4; i++){
@@ -23,41 +23,37 @@ class Map {
         // console.log(this.map)
     }
 
-    //Generating 1 player and 6 monsters onto the map created
+    
     spawnPlayerMonster(player,monster){
-        let monsterCount = 0;
-        for(let i=0;i<4;i++){
-            this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
-            monsterCount++;
-            if(monsterCount>=6){
-                console.log("Stop adding monster!");
-            }else{
-                this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
-                monsterCount++;
-            };
-        };
-
+        // Generating 1 player
         const randomMapRow = this.map[Math.floor(Math.random()*4)];
         if(!this.map.includes(player)){
                 randomMapRow[Math.floor(Math.random()*4)]=player;
         };
+        console.log(this.map)
+
+        // Generate 6 monsters onto the map created
+        let monsterCount = 0;
+        while(monsterCount<6){
+            let random=Math.floor(Math.random() * 4);
+            let random2=Math.floor(Math.random() * 4);
+
+            if(this.map[random][random2] !== monster){
+                monsterCount++
+            }
+
+            //Updating the collision status to true or false based on player and moster's position
+            if(this.map[random][random2] == player){
+                //Triggers if the player meets a moster
+                this.collision=true;
+            }
+
+            this.map[random][random2]=monster;
+        }
 
         console.log("The map:",this.map);
         return this.map;
     };
-
-    //Updating the collision status to true or false based on player and moster's position
-    updateCollision(map,player,monster){
-        for(let i=0;i<4;i++){
-            for(let j=0;j<4;j++){
-                if((map[i][j] == player) && (map[i][j] == monster)){
-                this.collision=true;
-                };
-                console.log("i:",i,"j:",j)
-            };
-        };
-        console.log("Collision status:",this.collision)
-    }
 }
 
-module.exports = Map
+module.exports = Map ;
