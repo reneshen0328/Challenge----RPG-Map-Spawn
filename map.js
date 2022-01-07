@@ -12,12 +12,17 @@ class Map {
 
     // Generating a 4X4 array
     generateMap(){
-        for (let i = 0; i < 4; i++){
-            this.map[i]=new Array();
-            for(let j = 0; j < 4; j++){
-                this.map[i][j]=0;
-            }
-          };
+        // METHOD 1:
+        // for (let i = 0; i < 4; i++){
+        //     this.map[i]=new Array();
+        //     for(let j = 0; j < 4; j++){
+        //         this.map[i][j]=0;
+        //     }
+        //   };
+
+        // METHOD 2:
+        this.map = Array(4).fill().map(()=>Array(4).fill(0))
+        console.log(this.map)
     }
 
     //Generating 1 player and 6 monsters onto the map created
@@ -58,5 +63,8 @@ class Map {
         console.log("Collision status:",this.collision)
     }
 }
+
+const testMap = new Map();
+testMap.generateMap();
 
 module.exports = Map
