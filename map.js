@@ -6,8 +6,8 @@ class Map {
     constructor(){
         this.map = [];
         this.collision = false;
-        this.randomPlayer = "p";
-        this.randomMonster = "M";
+        // this.randomPlayer = "p";
+        // this.randomMonster = "M";
     }
 
     // Generating a 4X4 array
@@ -21,25 +21,25 @@ class Map {
     }
 
     //Generating 1 player and 6 monsters onto the map created
-    spawnPlayerMonster(){
+    spawnPlayerMonster(player,monster){
         let monsterCount = 0;
         for(let i=0;i<4;i++){
             for(let j=0;j<4;j++){
-                if(this.map[i][j] == this.randomMonster){
+                if(this.map[i][j] == monster){
                 monsterCount++;
                 };
             };
             if(monsterCount>=6){
                 return this.map;
             }else{
-                this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=this.randomMonster;
+                this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
             };
-            this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=this.randomMonster;
+            this.map[Math.floor(Math.random() * 4)][Math.floor(Math.random()*4)]=monster;
     };
 
         const randomMapRow = this.map[Math.floor(Math.random()*4)];
-        if(!this.map.includes(this.randomPlayer)){
-                randomMapRow[Math.floor(Math.random()*4)]=this.randomPlayer;
+        if(!this.map.includes(player)){
+                randomMapRow[Math.floor(Math.random()*4)]=player;
             };
 
         console.log("The map:",this.map);
@@ -58,10 +58,5 @@ class Map {
         console.log("Collision status:",this.collision)
     }
 }
-
-const testMap = new Map()
-testMap.generateMap();
-const wholeMap = testMap.spawnPlayerMonster();
-testMap.updateCollision(wholeMap)
 
 module.exports = Map
